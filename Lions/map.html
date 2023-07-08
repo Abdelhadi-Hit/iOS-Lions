@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Map View</title>
+   
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+    <div id='map' style='width: 100%; height: 500px;'></div>
+
+    <script>
+        
+        function initMap() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert('Geolocation is not supported in this browser.');
+            }
+        }
+
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            
+           //my-AccesToken
+          // mapboxgl.accessToken = 'pk.eyJ1IjoiYWJkZWxoYWRpY3B1IiwiYSI6ImNsajJyZWNkbzEzNmkzbnMzNmYyenBpd3kifQ.2pgitbR54lJejwk8dmfT9g';// my public token
+           
+           // other customized token
+           //mapboxgl.accessToken ='sk.eyJ1IjoiYXltYW5lLW1zYSIsImEiOiJjbGo0NDNnb3YwYW9pM3FzMWNtcjltdHU2In0.WCDTkVd5DSIWXgLaid_khw'    // private token of ms
+           
+           mapboxgl.accessToken = 'pk.eyJ1IjoiYXltYW5lLW1zYSIsImEiOiJja3Jha2R1bzEzbTdjMnlzNmYwM2Y3MWYwIn0.umN_r7KlYA_4EdwsKC8uEA'  //public tokrn of ms
+           
+            var map = new mapboxgl.Map({
+                container: 'map',
+                 //style: 'mapbox://styles/mapbox/streets-v11',  // my style
+                style: 'mapbox://styles/aymane-msa/clj5typ3r002g01pi6r5dhn8q', //ms style
+                center: [longitude, latitude],
+                zoom: 9,
+                scaleBarEnabled : false
+            });
+            
+            var customMarker = document.createElement('div');
+            customMarker.className = 'marker'
+            customMarker.innerHTML = '📍'
+            
+            //style 📍
+            
+            customMarker.style.fontSize = '30px'
+        
+
+            var marker = new mapboxgl.Marker(customMarker)
+                .setLngLat([longitude, latitude])
+                .addTo(map);
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert('User denied the request for Geolocation.');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert('Location information is unavailable.');
+                    break;
+                case error.TIMEOUT:
+                    alert('The request to get user location timed out.');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert('An unknown error occurred.');
+                    break;
+            }
+        }
+    </script>
+
+    <script>
+        // call initt
+        document.addEventListener("DOMContentLoaded", function() {
+            initMap();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+
+[
+    {
+        "title": "africa challanges ",
+        "image": "Rectangle 41",
+        "startTime": "2023-06-12T09:00:00Z",
+        "batchTime": 60,
+        "progress": 0.75
+    },
+    {
+        "title": "Impact of the BRT bus on local communities",
+        "image": "Rectangle 37",
+        "startTime": "2023-06-15T14:30:00Z",
+        "batchTime": 120,
+        "progress": 0.5
+    },
+    {
+        "title": "Highway construction impact on local",
+        "image": "Rectangle 39",
+        "startTime": "2023-06-15T14:30:00Z",
+        "batchTime": 169,
+        "progress": 0.5
+    }
+]

@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mapbox Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+    <div><p>This is your map</p></div>
+    <div id='map' style='width: 100%; height: 300px;'></div>
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYWJkZWxoYWRpY3B1IiwiYSI6ImNsajJyZWNkbzEzNmkzbnMzNmYyenBpd3kifQ.2pgitbR54lJejwk8dmfT9g';
+      
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v10',
+        center: [-74.5, 40], // Default center coordinates
+        zoom: 9 // Default zoom level
+      });
+      
+      // Add geolocate control to the map
+      var geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
+      });
+      
+      map.addControl(geolocate);
+      
+      // Add a marker at the user's current location
+      geolocate.on('geolocate', function(e) {
+        var lon = e.coords.longitude;
+        var lat = e.coords.latitude;
+        
+        var marker = new mapboxgl.Marker()
+          .setLngLat([lon, lat])
+          .addTo(map);
+      });
+    </script>
+</body>
+</html>
